@@ -37,9 +37,10 @@ export const getDashInfo = () => async (dispatch) => {
     if (response.ok) {
         let jsonInfo = await response.json()
         dispatch(dashInfo(jsonInfo))
-        return true
+        return
     } else if (response.status === 401) {
         history.push("/sign-in")
+        return
     }
 }
 

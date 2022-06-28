@@ -1,7 +1,7 @@
 import React from "react";
 import '../../styles/dashboard.scss'
 import {useDispatch, useSelector} from "react-redux";
-import dashReducer, {getDashInfo} from "../../store/reducers/dashboard";
+import {getDashInfo} from "../../store/reducers/dashboard";
 
 const DashboardWindow = () => {
     const dispatch = useDispatch()
