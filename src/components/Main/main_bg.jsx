@@ -3,6 +3,8 @@ import '../../styles/main_bg.scss'
 import SignInWindow from "../Auth/sign-in_comp";
 import SignUpWindow from "../Auth/sign-up-comp";
 import OrdersWindow from "../boards/orders";
+import DashboardWindow from "../boards/dashboard";
+
 
 import {useLocation} from "react-router-dom";
 
@@ -15,6 +17,8 @@ const MainBg = () => {
         window = <SignInWindow/>
     } else if (location.pathname === "/sign-up") {
         window = <SignUpWindow/>
+    } else if (location.pathname === '/dashboard') {
+        window = <DashboardWindow/>
     } else if (location.pathname === '/orders') {
         window = <OrdersWindow/>
     }

@@ -20,6 +20,7 @@ class App extends Component {
                     <Route history={history} path='/sign-in' component={Main} />
                     <Route history={history} path='/sign-up' component={Main} />
                     <Route history={history} path='/orders' component={Main} />
+                    <Route history={history} path='/dashboard' component={Main} />
                     <Redirect from='/' to='/sign-in'/>
                 </Switch>
             </div>

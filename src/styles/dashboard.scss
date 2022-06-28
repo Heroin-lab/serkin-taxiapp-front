@@ -1,0 +1,24 @@
+.board {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  min-width: 400px;
+  min-height: 230px;
+  margin: 70px 0 0 35px;
+  background-color: rgba(47, 47, 47, 0.7);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.40);
+  border-radius: 14px;
+
+  & h2 {
+      margin: 22px 0 0 30px;
+      color: rgba(255, 255, 255, 0.7);
+  }
+
+  & h1 {
+    margin: 22px 0 0 30px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+  }
+}
