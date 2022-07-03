@@ -4,6 +4,7 @@ import SignInWindow from "../Auth/sign-in_comp";
 import SignUpWindow from "../Auth/sign-up-comp";
 import OrdersWindow from "../boards/orders";
 import DashboardWindow from "../boards/dashboard";
+import CabMansWindow from "../boards/cabmans";
 
 
 import {useLocation} from "react-router-dom";
@@ -21,6 +22,8 @@ const MainBg = () => {
         window = <DashboardWindow/>
     } else if (location.pathname === '/orders') {
         window = <OrdersWindow/>
+    } else if (location.pathname === '/cab-mans') {
+        window = <CabMansWindow/>
     }
 
     return (

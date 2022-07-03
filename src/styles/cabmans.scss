@@ -1,0 +1,58 @@
+.drivers-cards {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 98%;
+  margin-left: 20px;
+
+  &__card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 413px;
+    height: 200px;
+    margin: 20px 20px 0 0;
+    border-radius: 14px;
+    background-color: rgba(47, 47, 47, 0.7);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.40);
+
+    &_wrapper {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      width: 90%;
+    }
+
+    & img {
+      width: 100px;
+      height: 100px;
+      border-radius: 100px;
+    }
+
+    &_creds {
+      margin-left: 50px;
+
+      & p {
+        color: white;
+        font-size: 20px;
+        text-transform: uppercase;
+        margin: 0;
+      }
+    }
+
+    & hr {
+      height: 120px;
+    }
+
+    & h3 {
+      width: 107px;
+      height: 22px;
+      padding: 5px;
+      color: rgba(255, 255, 255, 0.7);
+      background-color: #ababab;
+      border: 1px solid white;
+      border-radius: 7px;
+    }
+  }
+}
