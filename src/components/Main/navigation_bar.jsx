@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import "../../styles/naviagtion_bar.scss"
 import homeIcon from "../../assets/home_icon.png"
 import listIcon from "../../assets/orders_list.png"
+import taxiDriverIcon from "../../assets/taxi-driver-icon.png"
 import {useDispatch, useSelector} from "react-redux";
 import {stateUpdater} from "../../store/reducers/auth";
 
@@ -17,7 +18,7 @@ const NavBar = () => {
             <ul id='itemsList' className='nav-bar__icons'>
                 <li><Link to='/dashboard'><img src={homeIcon} alt="#"/></Link></li>
                 <li><Link to='/orders'><img src={listIcon} alt="#"/></Link></li>
-                <li><Link to='/auth'><img src={homeIcon} alt="#"/></Link></li>
+                <li><Link to='/cab-mans'><img src={taxiDriverIcon} alt="#"/></Link></li>
                 <li><p>?</p></li>
             </ul>
         )

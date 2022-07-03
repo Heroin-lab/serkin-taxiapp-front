@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import {useHistory} from "react-router-dom";
+import {logOutUser} from "./auth";
 
 const initialState = {
     created: 0,
@@ -37,9 +38,11 @@ export const getDashInfo = () => async (dispatch) => {
     if (response.ok) {
         let jsonInfo = await response.json()
         dispatch(dashInfo(jsonInfo))
-        return true
+        return
     } else if (response.status === 401) {
         history.push("/sign-in")
+        dispatch(logOutUser())
+        return
     }
 }
 
