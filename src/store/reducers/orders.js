@@ -1,6 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {useHistory} from "react-router-dom";
-import {useSelector} from "react-redux";
 import {logOutUser} from "./auth";
 
 

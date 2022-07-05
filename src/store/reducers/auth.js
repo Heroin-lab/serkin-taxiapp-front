@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import {useHistory} from "react-router-dom";
 
 const initialState = {
     isLoginStatus: false,
@@ -35,9 +36,7 @@ export const authSlice = createSlice({
     },
 })
 
-// Action creators are generated for each case reducer function
 export const { logInUser, logOutUser, createErrorAlert, stateUpdater} = authSlice.actions
-
 
 export const loginAsync = (data) => async (dispatch) => {
     let response = await fetch("http://localhost:7777/auth/sign-in", {

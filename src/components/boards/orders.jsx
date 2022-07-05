@@ -1,5 +1,5 @@
 import '../../styles/orders.scss'
-import reloadIcon from '../../assets/refresh-icon.png'
+import logOutIcon from '../../assets/log-out-icon.png'
 
 import React, {useState, useEffect, useReducer} from "react";
 import {useDispatch, useSelector} from "react-redux";
@@ -11,7 +11,9 @@ import {
     GetAllOrders,
     GetDriversNames,
 } from "../../store/reducers/orders";
+import {logOutUser} from "../../store/reducers/auth";
 import CustomSelect from "react-select";
+import {useHistory} from "react-router-dom";
 
 const UseGetAllOrders = () => {
     let dispatch = useDispatch()
@@ -90,6 +92,7 @@ const OrdersElements = (orders) => {
 
 const OrdersWindow = () => {
     const dispatch = useDispatch()
+    const history = useHistory()
     const ordersData = useSelector((state) => state.ordersReducer.allData)
     const amountOfOrders = useSelector((state) => state.ordersReducer.amountOfOrders)
     const limit = useSelector((state) => state.ordersReducer.limitFilter)
@@ -180,9 +183,12 @@ const OrdersWindow = () => {
                         <h3>15</h3>
                     </div>
                 </div>
-                <div onClick={() => dispatch(ChangeStatus(statusId))}
-                     className='reload'>
-                    <img src={reloadIcon} alt="#"/>
+                <div onClick={() => {
+                    dispatch(logOutUser())
+                    history.push("/sign-in")
+                }}
+                     className='log-out'>
+                    <img src={logOutIcon} alt="#"/>
                 </div>
             </div>
 

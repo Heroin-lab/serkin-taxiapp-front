@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import {Link, useHistory} from "react-router-dom"
 
 import "../../styles/naviagtion_bar.scss"
 import homeIcon from "../../assets/home_icon.png"
@@ -10,15 +10,16 @@ import {stateUpdater} from "../../store/reducers/auth";
 const NavBar = () => {
     const isLoginStatus = useSelector((state) => state.authReducer.isLoginStatus)
     const dispatch = useDispatch()
+    const history = useHistory()
 
     dispatch(stateUpdater())
 
     const allNavIcons = () => {
         return (
             <ul id='itemsList' className='nav-bar__icons'>
-                <li><Link to='/dashboard'><img src={homeIcon} alt="#"/></Link></li>
-                <li><Link to='/orders'><img src={listIcon} alt="#"/></Link></li>
-                <li><Link to='/cab-mans'><img src={taxiDriverIcon} alt="#"/></Link></li>
+                <li onClick={() => history.push("/dashboard")}><img src={homeIcon} alt="#"/></li>
+                <li onClick={() => history.push("/orders")}><img src={listIcon} alt="#"/></li>
+                <li onClick={() => history.push("/cab-mans")}><img src={taxiDriverIcon} alt="#"/></li>
                 <li><p>?</p></li>
             </ul>
         )
