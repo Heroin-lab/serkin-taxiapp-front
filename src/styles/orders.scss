@@ -53,7 +53,7 @@
     background-color: #373737;
   }
 
-  & .reload {
+  & .log-out {
     width: 45px;
     height: 45px;
     margin: 12px 50px 0 0;
@@ -61,9 +61,9 @@
     border-radius: 36px;
 
     & img {
-      margin: 7px 0 0 8px;
-      width: 30px;
-      height: 30px;
+      margin: 8px 0 0 11px;
+      width: 28px;
+      height: 28px;
     }
   }
 }
@@ -110,7 +110,7 @@
     & p {
       margin: 7px 0 7px 0;
       color: white;
-      font-size: 20px;
+      font-size: 17px;
       text-transform: uppercase;
     }
 
@@ -118,6 +118,7 @@
       width: 120px;
       height: 22px;
       padding: 5px;
+      margin: 10px 0 0 0;
       color: rgba(255, 255, 255, 0.7);
       background-color: #ababab;
       border: 1px solid white;
