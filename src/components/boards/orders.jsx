@@ -63,15 +63,17 @@ const customStyles = {
 }
 
 const OrdersElements = (orders) => {
+    let history = useHistory()
+
     return (
         <div className='orders'>
             {orders.map((order, index) => (
-                <div className='order'>
+                <div onClick={() => order.status !== "Created" ? history.push(`/orders/${order.id}`) : false} className='order'>
                     <div className='order__left-block'>
                         <img src={order.image || 'https://cdn-icons-png.flaticon.com/512/219/219986.png'} alt="#"/>
                         <p>{order.first_name} {order.second_name}</p>
                         <hr/>
-                        <h3>{order.vehicle_number}</h3>
+                        <h3>{order.vehicle_number || `Created at: ${order.created_at}`}</h3>
                     </div>
                     <div className="order__right-block">
                         <h3>ORDER STATUS: {order.status}</h3>

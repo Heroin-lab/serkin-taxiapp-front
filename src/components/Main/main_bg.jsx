@@ -1,36 +1,49 @@
 import '../../styles/main_bg.scss'
 
 import SignInWindow from "../Auth/sign-in_comp";
-import SignUpWindow from "../Auth/sign-up-comp";
+import SignUpWindow from "../Auth/sign-up_comp";
 import OrdersWindow from "../boards/orders";
 import DashboardWindow from "../boards/dashboard";
 import CabMansWindow from "../boards/cabmans";
 
 
-import {useLocation} from "react-router-dom";
+import {useRouteMatch, Route, Switch} from "react-router-dom";
+import SingleOrder from "../boards/single_order";
 
 const MainBg = () => {
-    const location = useLocation()
+    let match = useRouteMatch();
 
-    let window
-
-    if (location.pathname === "/sign-in") {
-        window = <SignInWindow/>
-    } else if (location.pathname === "/sign-up") {
-        window = <SignUpWindow/>
-    } else if (location.pathname === '/dashboard') {
-        window = <DashboardWindow/>
-    } else if (location.pathname === '/orders') {
-        window = <OrdersWindow/>
-    } else if (location.pathname === '/cab-mans') {
-        window = <CabMansWindow/>
-    }
 
     return (
         <main className='main'>
-            {window}
+            <Switch>
+                <Route path={'/sign-in'}>
+                    <SignInWindow/>
+                </Route>
 
-            <div className='main__blur'></div>
+                <Route path={'/sign-up'}>
+                    <SignUpWindow/>
+                </Route>
+
+                <Route path={'/dashboard'}>
+                    <DashboardWindow/>
+                </Route>
+
+                <Route path={'/orders'}>
+                    <Switch>
+                        <Route path={`${match.path}/:orderId`}>
+                            <SingleOrder/>
+                        </Route>
+                        <Route path={`${match.path}`}>
+                            <OrdersWindow/>
+                        </Route>
+                    </Switch>
+                </Route>
+
+                <Route path={'/cab-mans'}>
+                    <CabMansWindow/>
+                </Route>
+            </Switch>
         </main>
     )
 }
