@@ -7,7 +7,8 @@ import React, {useEffect, useState} from "react";
 import Popup from 'reactjs-popup';
 import {useHistory, useLocation} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {GetOrderDataById, GetOrderHistory} from "../../store/reducers/single_order";
+import {GetAllHistoryMarkers, GetOrderDataById, GetOrderHistory} from "../../store/reducers/single_order";
+import MyMapComponent from "./map"
 
 const SingleOrder = () => {
     const history = useHistory()
@@ -25,9 +26,14 @@ const SingleOrder = () => {
         dispatch(GetOrderHistory(location.pathname.slice(8), offsetCounter, history))
     }, [offsetCounter])
 
+    useEffect(() => {
+        dispatch(GetAllHistoryMarkers(location.pathname.slice(8), history))
+    }, [])
+
     let orderInfo = useSelector((state) => state.singleOrderReducer.orderInfo)
     let orderHistory = useSelector((state) => state.singleOrderReducer.orderHistory)
     let amountOfRows = useSelector(state => state.singleOrderReducer.amountOfRows)
+    let allMarkers = useSelector(state => state.singleOrderReducer.allMarkers)
 
     let pageAmount = Math.ceil(amountOfRows/5)
     let pageArray = [pageAmount - 2, pageAmount -1, pageAmount]
@@ -164,6 +170,7 @@ const SingleOrder = () => {
                         <a className="close" onClick={close}>
                             &times;
                         </a>
+                        <MyMapComponent isMarkerShown allMarkers={allMarkers} />
                     </div>
                 )}
             </Popup>

@@ -36,6 +36,7 @@ const initialState = {
         created_at: "Loading..."
     }],
     amountOfRows: 0,
+    allMarkers: []
 }
 
 const singleOrderSlice = createSlice({
@@ -48,11 +49,14 @@ const singleOrderSlice = createSlice({
         setOrderHistory: (state, action) => {
             state.orderHistory = action.payload.data
             state.amountOfRows = action.payload.amount
+        },
+        setAllMarkers: (state, action) => {
+            state.allMarkers = action.payload.data
         }
     }
 })
 
-export const {setOrderInfo, setOrderHistory} = singleOrderSlice.actions
+export const {setOrderInfo, setOrderHistory, setAllMarkers} = singleOrderSlice.actions
 
 export const GetOrderDataById = (id, history) => async (dispatch) => {
     let response = await fetch("http://localhost:7777/api/orders/" + id, {
@@ -90,6 +94,27 @@ export const GetOrderHistory = (id, offset, history) => async (dispatch) => {
     if (response.ok) {
         let jsonData = await response.json()
         dispatch(setOrderHistory(jsonData))
+        return
+    } else if (response.status === 401) {
+        history.push("/sign-in")
+        dispatch(logOutUser())
+        return
+    }
+}
+
+export const GetAllHistoryMarkers = (id, history) => async (dispatch) => {
+    let response = await fetch(`http://localhost:7777/api/history/${id}?limit=50`, {
+        mode: "cors",
+        method: "GET",
+        headers: {
+            "Accept":"*/*",
+            "Authorization": "Bearer " + localStorage.getItem("access_token")
+        }
+    })
+
+    if (response.ok) {
+        let jsonData = await response.json()
+        dispatch(setAllMarkers(jsonData))
         return
     } else if (response.status === 401) {
         history.push("/sign-in")

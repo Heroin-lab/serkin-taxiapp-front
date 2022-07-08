@@ -1,3 +1,15 @@
+.map {
+  width: 1000px;
+
+  & .close {
+    position: relative;
+    left: 500px;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+  }
+}
+
 .single-order {
   display: flex;
   justify-content: space-between;
@@ -177,7 +189,7 @@
     cursor: pointer;
 
     & h3 {
-      width: 50px;
+      width: 45px;
       margin: 140px 0 0 10px;
       font-size: 37px;
       word-break: break-all;
