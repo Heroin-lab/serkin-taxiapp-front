@@ -6,7 +6,6 @@ import plusIcon from '../../assets/plus-icon.png'
 import editIcon from '../../assets/edit-icon.png'
 import deleteIcon from '../../assets/delete-icon.png'
 
-import 'reactjs-popup/dist/index.css';
 import '../../styles/orders.scss'
 import '../../styles/cabmans.scss'
 import '../../styles/auth.scss'
@@ -173,9 +172,11 @@ const CabMansWindow = () => {
                                                     <h1>This action cannot be undone!</h1>
 
                                                     <div className="delete-btns">
-                                                        <input onClick={() => {
-                                                            dispatch(DeleteCanMan(oneCabManInfo.id, history)) ? close() : false
-                                                            callUpdate(update += 1)
+                                                        <input onClick={async () => {
+                                                            if (await dispatch(DeleteCanMan(oneCabManInfo.id, history))) {
+                                                                callUpdate(update += 1)
+                                                                close()
+                                                            }
                                                         }}
                                                                defaultValue="Confirm delete"
                                                                type="button"
@@ -243,8 +244,8 @@ const CabMansWindow = () => {
                                                maxLength="10"
                                         />
                                     </div>
-                                    <input onClick={() => {
-                                        dispatch(EditValidator(oneCabManInfo)) ? dispatch(CreateCabMan(oneCabManInfo, history)) ? close() : false : false
+                                    <input onClick={async () => {
+                                        await dispatch(EditValidator(oneCabManInfo)) ? dispatch(CreateCabMan(oneCabManInfo, history)) ? close() : false : false
                                         callUpdate(update += 1)
                                     }}
                                            defaultValue="Create"

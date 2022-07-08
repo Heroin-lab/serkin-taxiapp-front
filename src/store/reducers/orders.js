@@ -108,6 +108,7 @@ export const GetDriversNames = () => async (dispatch) => {
     } else if (response.status === 401) {
         history.push("/sign-in")
         dispatch(clearRequestStr())
+        dispatch(logOutUser())
         return
     }
 }
