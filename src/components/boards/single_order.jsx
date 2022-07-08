@@ -3,12 +3,20 @@ import '../../styles/orders.scss'
 import logOutIcon from "../../assets/log-out-icon.png";
 
 import {logOutUser} from "../../store/reducers/auth";
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import Popup from 'reactjs-popup';
 import {useHistory, useLocation} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {GetAllHistoryMarkers, GetOrderDataById, GetOrderHistory} from "../../store/reducers/single_order";
+import {
+    GetAllHistoryMarkers,
+    GetOrderDataById,
+    GetOrderHistory,
+    GetRowsThroughWebSocket,
+} from "../../store/reducers/single_order";
 import MyMapComponent from "./map"
+import SingleOrderPageHeader from "./single_order_header";
+import useWebSocket from "react-use-websocket";
+import WebSocketHistoryRows from "./single_orders_socket";
 
 const SingleOrder = () => {
     const history = useHistory()
@@ -17,6 +25,7 @@ const SingleOrder = () => {
 
     const [updateOrder, callUpdateOrder] = useState(1)
     const [offsetCounter, setOffsetCounter] = useState(0)
+    const [sock, setSock] = useState(0)
 
     useEffect(() => {
         dispatch(GetOrderDataById(location.pathname.slice(8), history))
@@ -66,52 +75,11 @@ const SingleOrder = () => {
                     </div>
                 </div>
 
-                <div className="single-order__header">
-                    <div className="single-order__header_left-block">
-                        <img src={orderInfo.image} alt="#"/>
-                        <p>{orderInfo.first_name} {orderInfo.second_name}</p>
-                        <hr/>
-                        <h3>{orderInfo.vehicle_number}</h3>
-                    </div>
-
-                    <div className="single-order__header_middle-block">
-                        <p>Order ID: {orderInfo.id}</p>
-                        <p>Order status: {orderInfo.status}</p>
-                        <p>Created at: {orderInfo.created_at}</p>
-                        <p>Ended at: {orderInfo.updated_at}</p>
-                    </div>
-
-                    <div className="single-order__header_right-block">
-                        <div className="right-block-wrapper">
-                            <div className="right-block-wrapper__block">
-                                <h3>START LOCATION:</h3>
-                                <div className='location'>
-                                    <h4>LONGITUDE:</h4>
-                                    <p><strong>{orderInfo.start_long}</strong></p>
-                                </div>
-                                <div className='location'>
-                                    <h4>LATITUDE:</h4>
-                                    <p><strong>{orderInfo.start_lat}</strong></p>
-                                </div>
-                            </div>
-
-                            <div className="right-block-wrapper__block">
-                                <h3>END LOCATION:</h3>
-                                <div className='location'>
-                                    <h4>LONGITUDE:</h4>
-                                    <p><strong>{orderInfo.end_long}</strong></p>
-                                </div>
-                                <div className='location'>
-                                    <h4>LATITUDE:</h4>
-                                    <p><strong>{orderInfo.end_lat}</strong></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <SingleOrderPageHeader orderInfo={orderInfo} />
+                <WebSocketHistoryRows id={location.pathname.slice(8)} status={orderInfo.status} />
 
                 <div className="single-order__list">
-                    {orderHistory.map((item, index) => (
+                    {orderHistory ? orderHistory.map((item, index) => (
                         <div className="single-order__list_item">
                             <h4>{amountOfRows-index - (offsetCounter * 5)}</h4>
                             <div className="wrapper">
@@ -120,7 +88,7 @@ const SingleOrder = () => {
                                 <p>Latitude: <strong>{item.latitude}</strong></p>
                             </div>
                         </div>
-                    ))}
+                    )) : <div></div>}
                 </div>
 
                 <div className="paginator-wrapper">

@@ -1,5 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {logOutUser} from "./auth";
+import useWebSocket from "react-use-websocket";
 
 const initialState = {
     orderInfo: [{
@@ -52,11 +53,22 @@ const singleOrderSlice = createSlice({
         },
         setAllMarkers: (state, action) => {
             state.allMarkers = action.payload.data
+        },
+        setFILO: (state, action) => {
+            if (state.orderHistory.length === 5) {
+                state.orderHistory.splice(4, 1)
+            }
+            state.orderHistory.unshift(action.payload)
+            state.amountOfRows++
+            if (state.amountOfRows === 50) {
+                state.orderInfo.status = "Done"
+            }
+            state.allMarkers.push(action.payload)
         }
     }
 })
 
-export const {setOrderInfo, setOrderHistory, setAllMarkers} = singleOrderSlice.actions
+export const {setOrderInfo, setOrderHistory, setAllMarkers, setFILO} = singleOrderSlice.actions
 
 export const GetOrderDataById = (id, history) => async (dispatch) => {
     let response = await fetch("http://localhost:7777/api/orders/" + id, {
@@ -121,6 +133,10 @@ export const GetAllHistoryMarkers = (id, history) => async (dispatch) => {
         dispatch(logOutUser())
         return
     }
+}
+
+export const GetRowsThroughWebSocket = (id, history) => async (dispatch) => {
+
 }
 
 export default singleOrderSlice.reducer
