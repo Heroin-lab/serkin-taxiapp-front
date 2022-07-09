@@ -19,6 +19,10 @@ class App extends Component {
                 <Switch>
                     <Route history={history} path='/sign-in' component={Main} />
                     <Route history={history} path='/sign-up' component={Main} />
+                    <Route history={history} path='/orders' component={Main} />
+                    <Route history={history} path='/orders/:id' component={Main}/>
+                    <Route history={history} path='/dashboard' component={Main} />
+                    <Route history={history} path='/cab-mans' component={Main} />
                     <Redirect from='/' to='/sign-in'/>
                 </Switch>
             </div>
@@ -26,4 +30,5 @@ class App extends Component {
     }
 }
 
-export default withRouter(App);
+export default withRouter(App)
+

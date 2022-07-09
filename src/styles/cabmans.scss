@@ -1,0 +1,234 @@
+.popup-content {
+  margin: auto;
+  background: #171717;
+  border: none;
+  border-radius: 14px;
+}
+
+.modal {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 520px;
+  padding: 10px 0 50px 0;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    & h1 {
+      width: 90%;
+      margin: 0;
+      color: white;
+      font-size: 27px;
+      text-transform: uppercase;
+    }
+
+    & .delete-btns {
+
+      &__btn {
+        width: 190px;
+        height: 50px;
+        margin-top: 40px;
+        font-size: 30px;
+        font-family: 'Bebas Neue', cursive;
+        border: none;
+        border-radius: 14px;
+        background-color: #dc0021;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.40);
+
+        &:nth-last-child(1) {
+          margin-left: 20px;
+          background-color: #ffcc00;
+        }
+
+        &:hover {
+          opacity: 90%;
+        }
+      }
+    }
+  }
+
+  & img {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+  }
+
+  &__inputs {
+    margin-top: 50px;
+    width: 390px;
+    text-align: left;
+
+    & label {
+      position: relative;
+      top: 22px;
+      left: 2px;
+      color: white;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    & input {
+      width: 370px;
+      height: 60px;
+      margin-top: 30px;
+      padding-left: 20px;
+      background-color: #232323;
+      border-radius: 14px;
+      border: none;
+      box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.40);
+      //font-family: 'Bebas Neue', cursive;
+      font-size: 18px;
+      color: white;
+
+      &:focus {
+        outline: none !important;
+        border:1px solid #FBA703;
+      }
+
+      &::placeholder {
+        font-size: 14px;
+      }
+    }
+  }
+
+  &__alerter {
+    height: 14px;
+    margin: 30px 0 0 0;
+    color: red;
+  }
+
+  & .window__button {
+    width: 390px;
+    height: 60px;
+    margin-top: 40px;
+    font-size: 30px;
+    text-align: center;
+    font-family: 'Bebas Neue', cursive;
+    border: none;
+    border-radius: 14px;
+    background-color: #FBA703;
+    cursor: pointer;
+  }
+
+  &__close-button {
+    position: relative;
+    left: 220px;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+  }
+}
+
+.drivers-cards {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 98%;
+  margin-left: 20px;
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 413px;
+    height: 240px;
+    margin: 20px 20px 0 0;
+    border-radius: 14px;
+    background-color: rgba(47, 47, 47, 0.7);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.40);
+
+    &_wrapper {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      width: 90%;
+
+      & img {
+        width: 100px;
+        height: 100px;
+        border-radius: 100px;
+      }
+    }
+
+    &_creds {
+      margin-left: 10px;
+
+      & p {
+        color: white;
+        font-size: 20px;
+        text-transform: uppercase;
+        margin: 0 7px 0 0;
+      }
+    }
+
+    & hr {
+      height: 120px;
+    }
+
+    & h3 {
+      margin-left: 7px;
+      padding: 5px 10px 5px 10px;
+      color: rgba(255, 255, 255, 0.7);
+      background-color: #ababab;
+      border: 1px solid white;
+      border-radius: 7px;
+    }
+
+    &_plus {
+      padding: 32px;
+      border-radius: 100%;
+      background-color: rgba(34, 34, 34, 0.5);
+
+      & img {
+        width: 32px;
+        height: 32px;
+      }
+
+      &:hover {
+        background-color: rgba(34, 34, 34, 0.9);
+      }
+    }
+
+    &_actions {
+      display: flex;
+      justify-content: center;
+      width: 90%;
+      margin-top: 10px;
+      background-color: rgba(34, 34, 34, 0.5);
+      border-radius: 28px;
+
+      & .wrapper {
+        display: flex;
+        justify-content: space-between;
+        width: 30%;
+        padding: 5px;
+
+        & button {
+          padding: 12px;
+          border: none;
+          border-radius: 100%;
+          background-color: rgba(34, 34, 34, 0.5);
+
+          &:hover {
+            background-color: rgba(34, 34, 34, 0.9);
+          }
+        }
+
+        & img {
+          pointer-events: none;
+          margin: 0 auto;
+          width: 18px;
+          height: 18px;
+        }
+      }
+    }
+  }
+}
