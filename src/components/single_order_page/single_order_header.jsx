@@ -17,7 +17,7 @@ const SingleOrderPageHeader = (props) => {
                 <p>Order ID: {props.orderInfo.id}</p>
                 <p>Order status: {props.orderInfo.status}</p>
                 <p>Created at: {props.orderInfo.created_at}</p>
-                <p>Ended at: {props.orderInfo.updated_at}</p>
+                <p>Ended at: {props.orderInfo.status === "Done" ? props.orderInfo.updated_at : "In process..."}</p>
             </div>
 
             <div className="single-order__header_right-block">
@@ -31,6 +31,18 @@ const SingleOrderPageHeader = (props) => {
                         <div className='location'>
                             <h4>LATITUDE:</h4>
                             <p><strong>{props.orderInfo.start_lat}</strong></p>
+                        </div>
+                    </div>
+
+                    <div style={props.orderInfo.status === "Done" ? {display: "none"} : {display: "flex"}} className="right-block-wrapper__block">
+                        <h3>CURRENT LOCATION:</h3>
+                        <div className='location'>
+                            <h4>LONGITUDE:</h4>
+                            <p><strong>{props.orderHistory[0].longitude}</strong></p>
+                        </div>
+                        <div className='location'>
+                            <h4>LATITUDE:</h4>
+                            <p><strong>{props.orderHistory[0].latitude}</strong></p>
                         </div>
                     </div>
 

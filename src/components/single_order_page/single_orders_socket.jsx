@@ -5,8 +5,6 @@ import {useDispatch} from "react-redux";
 import {setFILO} from "../../store/reducers/single_order";
 
 const WebSocketHistoryRows = (props) => {
-    if (props.status === "Done") return
-
     const dispatch = useDispatch()
 
     const [messageHistory, setMessageHistory] = useState([]);
@@ -40,6 +38,7 @@ const WebSocketHistoryRows = (props) => {
     }[readyState];
 
     handleClickSendMessage()
+
     return (
         <div>
             {}

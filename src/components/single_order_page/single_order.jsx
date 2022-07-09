@@ -17,15 +17,15 @@ import MyMapComponent from "./map"
 import SingleOrderPageHeader from "./single_order_header";
 import useWebSocket from "react-use-websocket";
 import WebSocketHistoryRows from "./single_orders_socket";
+import SingleOrderHistory from "./single_order_history";
 
 const SingleOrder = () => {
     const history = useHistory()
     const location = useLocation()
     const dispatch = useDispatch()
 
-    const [updateOrder, callUpdateOrder] = useState(1)
+    let [updateOrder, callUpdateOrder] = useState(1)
     const [offsetCounter, setOffsetCounter] = useState(0)
-    const [sock, setSock] = useState(0)
 
     useEffect(() => {
         dispatch(GetOrderDataById(location.pathname.slice(8), history))
@@ -75,21 +75,9 @@ const SingleOrder = () => {
                     </div>
                 </div>
 
-                <SingleOrderPageHeader orderInfo={orderInfo} />
+                <SingleOrderPageHeader orderInfo={orderInfo} orderHistory={orderHistory}/>
                 <WebSocketHistoryRows id={location.pathname.slice(8)} status={orderInfo.status} />
-
-                <div className="single-order__list">
-                    {orderHistory ? orderHistory.map((item, index) => (
-                        <div className="single-order__list_item">
-                            <h4>{amountOfRows-index - (offsetCounter * 5)}</h4>
-                            <div className="wrapper">
-                                <p>Time: <strong>{item.created_at}</strong></p>
-                                <p>Longitude: <strong>{item.longitude}</strong></p>
-                                <p>Latitude: <strong>{item.latitude}</strong></p>
-                            </div>
-                        </div>
-                    )) : <div></div>}
-                </div>
+                <SingleOrderHistory orderHistory={orderHistory} amountOfRows={amountOfRows} offsetCounter={offsetCounter} />
 
                 <div className="paginator-wrapper">
                     <div className="paginator">

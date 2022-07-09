@@ -1,4 +1,4 @@
-import {Link, useHistory} from "react-router-dom"
+import {useHistory} from "react-router-dom"
 
 import "../../styles/naviagtion_bar.scss"
 import homeIcon from "../../assets/home_icon.png"

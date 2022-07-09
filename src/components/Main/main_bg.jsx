@@ -8,7 +8,7 @@ import CabMansWindow from "../boards/cabmans";
 
 
 import {useRouteMatch, Route, Switch} from "react-router-dom";
-import SingleOrder from "../boards/single_order";
+import SingleOrder from "../single_order_page/single_order";
 
 const MainBg = () => {
     let match = useRouteMatch();

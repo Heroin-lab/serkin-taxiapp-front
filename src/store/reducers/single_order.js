@@ -13,7 +13,9 @@ const initialState = {
         start_long: "Loading...",
         start_lat: "Loading...",
         end_long: "Loading...",
-        end_lat: "Loading..."
+        end_lat: "Loading...",
+        created_at:"Loading...",
+        updated_at:"Loading...",
     }],
     orderHistory: [{
         latitude: "Loading...",
@@ -45,7 +47,10 @@ const singleOrderSlice = createSlice({
     initialState,
     reducers: {
         setOrderInfo: (state, action) => {
-            state.orderInfo = action.payload.data
+            let resData = action.payload.data
+            resData.created_at = `${resData.created_at.slice(0, 10)} ${resData.created_at.slice(11, 19)}`
+            resData.updated_at = `${resData.updated_at.slice(0, 10)} ${resData.updated_at.slice(11, 19)}`
+            state.orderInfo = resData
         },
         setOrderHistory: (state, action) => {
             state.orderHistory = action.payload.data
